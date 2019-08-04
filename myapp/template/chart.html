@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ <!-- <link rel="stylesheet"  href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+</head>
+
+<body style="text-align:center;" >
+<img src="https://apuzz.com/wp-content/uploads/2014/08/NEC-Technologies.png" height="200" width="200" align="left">
+<h1 class = "heading">Performance Monitoring Solutions<br></h1>
+<h1 class="Dashboard">Dashboard<br></h1><br><br>
+<div class="type">
+<a href="http://127.0.0.1:8000/myapp/">Nodes</a>
+<a href="http://127.0.0.1:8000/myapp/chart">Chart Data</a>
+<a href="http://127.0.0.1:8000/myapp/table">Tabular Data</a>
+</div>
+
+
+<h1 class = "heading">Performance Monitoring Solutions </h1>
+<br>
+<div class="type">  
+	<a href="javascript:history.back()" >Go Back</a>
+</div>
+
+<div id ="update">
+
+
+{% for db in final_data %}
+{{ db.ip_id }}
+	<div id="chart_div" style="width: 400px; height: 120px;"></div>
+  <div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Memory', {{db.ram_usage}}],
+          ['CPU' ,  {{db.cpu_usage}}],
+  
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);       
+      }
+    </script>	
+
+    <br>
+{% endfor %}
+</div>
+
+<script>
+$(document).ready(function() {
+ 
+    setInterval(function(){
+    $('#update').load("load_chart.html");
+    },3000);
+});
+</script>
+
+
+
+
+
+
+</body>
+</html>

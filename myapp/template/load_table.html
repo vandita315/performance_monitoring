@@ -1,0 +1,15 @@
+  {% for db in final_data  %}
+  <table>
+      
+   
+      <!--<td>{{data.memory_avail.available}}bytes</td>-->
+      <td>{{db.ip_id}}  </td>
+      <td>{{db.ram_usage}}%  &nbsp &nbsp &nbsp&nbsp  </td>
+      <td>{{db.cpu_usage}}%&nbsp &nbsp &nbsp&nbsp  </td>
+      <td>{{db.status}}&nbsp &nbsp &nbsp&nbsp  </td>
+      <td>{{db.date_time}}&nbsp &nbsp &nbsp&nbsp  </td>
+	  <td>{{db.mac}}&nbsp &nbsp &nbsp&nbsp  </td>
+    
+  </tr>
+  </table>
+  {% endfor %}

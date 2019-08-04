@@ -1,0 +1,29 @@
+{% for db in final_data %}
+{{ db.ip_id }}
+<div id="chart_div" style="width: 400px; height: 120px;"></div>
+
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Memory', {{db.ram_usage}}],
+          ['CPU',  {{db.cpu_usage}}],
+        ]);
+
+        var options = {
+          width: 400, height: 120,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);       
+      }
+    </script> 
+{% endfor %}

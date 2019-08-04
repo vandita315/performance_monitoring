@@ -1,0 +1,18 @@
+
+    {% for db in final_data %}
+    <div class="tooltip">
+      <div class="img-with-text">
+        {% if db.ram_usage %}   
+        <i class="material-icons large green ">laptop_chromebook</i>&nbsp&nbsp
+
+        {% else %}  
+        <i class="material-icons large red"> block</i>&nbsp&nbsp
+        {% endif %}
+
+        {{db.ip_id}} <!-- </div> -->
+        <div class="tooltiptext">      
+          {{db.ip_id}}<br>dateTime:{{db.date_time}}</span></span>
+        </div>
+      </div>
+    </div>
+    {% endfor  %}
