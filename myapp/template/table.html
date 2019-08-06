@@ -13,6 +13,7 @@
 	
 </head>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 
@@ -28,7 +29,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 	<div class="navbar-collapse collapse" id="collapsingNavbar">
-	<a class="navbar-brand mx-auto" href="#"><h1>Dashboard</h1></a>
+	<h1 class="navbar-brand mx-auto" style="font-size: 40px">Tabular Data</h1>
 	<ul class="nav navbar-nav ml-auto">
 		<li class="nav-item">
 			<a class="lead nav-link active" href="#" >logged In as:Vandita</a>
@@ -51,30 +52,49 @@
 		</div>
 	</div>
 	<div class="col-md-10" style="margin-top:20px">
-	<table  class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">IP Address</th>
-					<th scope="col">Ram Usage</th>
-					<th scope="col">Cpu Usage</th>
-					<th scope="col">Status</th>
-					<th scope="col">date_time</th>
-					<th scope="col">mac</th>
-				</tr>
-			</thead>
-		<tbody>
-			{% for db in final_data  %}
-				<tr>
-					<td>{{db.ip_id}}  </td>
-					<td>{{db.ram_usage}}%  </td>
-					<td>{{db.cpu_usage}}% </td>
-					<td>{{db.status}} </td>
-					<td>{{db.date_time}} </td>
-					<td>{{db.mac}} </td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+		<div id="update">
+			<table  class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">IP Address</th>
+						<th scope="col">Ram Usage</th>
+						<th scope="col">Cpu Usage</th>
+						<th scope="col">Status</th>
+						<th scope="col">date_time</th>
+						<th scope="col">mac</th>
+					</tr>
+				</thead>
+			
+				<tbody>
+					{% for db in final_data  %}
+						<tr>
+							<td>{{db.ip_id}}  </td>
+							<td>{{db.ram_usage}}%  </td>
+							<td>{{db.cpu_usage}}% </td>
+							<td>{{db.status}} </td>
+							<td>{{db.date_time}} </td>
+							<td>{{db.mac}} </td>
+						</tr>
+					{% endfor %}
+				</tbody>
+				
+			</table>
+		</div>
 	</div>
+</div>
+<script>
+$(document).ready(function() {
+ 
+    setInterval(function(){
+    $('#update').load("load_table.html");
+    },3000);
+});
+
+</script>
+
+
+
+
+
 </body>
 </html>
