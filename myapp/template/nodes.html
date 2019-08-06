@@ -1,22 +1,43 @@
+
+{% load static %}
+{% static "myapp/" as baseUrl %}
+
 <!DOCTYPE html>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="/static/css/nodes.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> <!-- icon -->
+
+
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<style>
+	.green-icon{
+color:green !important;
+}
+
+.red-icon{
+color:red !important;
+	}
+
+
+</style>
+
+
+ 		
 </head>
-
-
-
 <body >
-
-
-
-
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 	<ul class="nav">
 		<li class="nav-item">
@@ -27,7 +48,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 	<div class=" collapse navbar-collapse " id="collapsingNavbar">
-	<a class=" mx-auto" href="#"><h1>Dashboard</h1></a>
+	<h1 class="navbar-brand mx-auto" style="font-size: 40px">Dashboard</h1>
 	<ul class="navbar-nav  ml-auto">
 		<li class="nav-item">
 			<a class="nav-link active" href="#" ></a>
@@ -49,23 +70,48 @@
 			<a href="javascript:history.back()" class="btn btn-secondary" >Go Back</a>
 		</div>
 	</div>
-	<div class="col-md-10">
-
+	<div id="update">
+		<div   class="col-md-10">
 			{% for db in final_data %}
-				{% if db.ip_id %}   
-				{{ db.ip_id }}
-					<div class="dot">
-                     </div>
-				{% else %}  
-					<div class="circle-text">
-                        {{db.username}}
-                     </div>
-				{% endif %} 
-					
-			{% endfor  %}
-  
+               
+                {% if db.cpu_usage %}   
+					<div class="container">
+					  <div data-toggle="tooltip" title="{{db.date_time}}">
+					  	<i class="glyphicon glyphicon-ok-sign green-icon" style="font-size:60px;"></i>
+					 </div>	
+
+					</div>
+                               		                  
+                {% else %}  
+               		<div class="container">
+					  <a href="#" data-toggle="tooltip" title="{{db.date_time}}">
+					  	<i class="glyphicon glyphicon-remove-circle red-icon" style="font-size:60px;"></a>
+					</div>
+                {% endif %}   
+                {{db.ip_id}}                  
+            {% endfor  %}
+	  
+		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+ 
+    setInterval(function(){
+    $('#update').load("load_nodes.html");
+    },3000);
+});
+
+</script>
 
 </body>
 </html>
