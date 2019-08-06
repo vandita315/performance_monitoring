@@ -1,15 +1,26 @@
-  {% for db in final_data  %}
-  <table>
+<table  class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">IP Address</th>
+            <th scope="col">Ram Usage</th>
+            <th scope="col">Cpu Usage</th>
+            <th scope="col">Status</th>
+            <th scope="col">date_time</th>
+            <th scope="col">mac</th>
+          </tr>
+        </thead>
       
-   
-      <!--<td>{{data.memory_avail.available}}bytes</td>-->
-      <td>{{db.ip_id}}  </td>
-      <td>{{db.ram_usage}}%  &nbsp &nbsp &nbsp&nbsp  </td>
-      <td>{{db.cpu_usage}}%&nbsp &nbsp &nbsp&nbsp  </td>
-      <td>{{db.status}}&nbsp &nbsp &nbsp&nbsp  </td>
-      <td>{{db.date_time}}&nbsp &nbsp &nbsp&nbsp  </td>
-	  <td>{{db.mac}}&nbsp &nbsp &nbsp&nbsp  </td>
-    
-  </tr>
-  </table>
-  {% endfor %}
+        <tbody>
+          {% for db in final_data  %}
+            <tr>
+              <td>{{db.ip_id}}  </td>
+              <td>{{db.ram_usage}}%  </td>
+              <td>{{db.cpu_usage}}% </td>
+              <td>{{db.status}} </td>
+              <td>{{db.date_time}} </td>
+              <td>{{db.mac}} </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        
+      </table>
