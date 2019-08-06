@@ -1,18 +1,22 @@
+<div   class="col-md-10">
 
-    {% for db in final_data %}
-    <div class="tooltip">
-      <div class="img-with-text">
-        {% if db.ram_usage %}   
-        <i class="material-icons large green ">laptop_chromebook</i>&nbsp&nbsp
+            {% for db in final_data %}
+               
+                {% if db.cpu_usage %}   
+                    <div class="container">
+                      <div data-toggle="tooltip" title="{{db.date_time}}">
+                        <i class="glyphicon glyphicon-ok-sign green-icon" style="font-size:60px;"></i>
+                     </div> 
 
-        {% else %}  
-        <i class="material-icons large red"> block</i>&nbsp&nbsp
-        {% endif %}
-
-        {{db.ip_id}} <!-- </div> -->
-        <div class="tooltiptext">      
-          {{db.ip_id}}<br>dateTime:{{db.date_time}}</span></span>
+                    </div>
+                                                      
+                {% else %}  
+                    <div class="container">
+                      <a href="#" data-toggle="tooltip" title="{{db.date_time}}">
+                        <i class="glyphicon glyphicon-remove-circle " style="font-size:60px;"></a>
+                    </div>
+                {% endif %}   
+                {{db.ip_id}}                  
+            {% endfor  %}
+      
         </div>
-      </div>
-    </div>
-    {% endfor  %}
